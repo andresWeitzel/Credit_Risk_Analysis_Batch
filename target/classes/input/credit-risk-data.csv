@@ -1,0 +1,6 @@
+customerId,customerName,creditScore,income,debtToIncomeRatio,paymentHistory
+CUST001,John Doe,750,50000,0.35,95
+CUST002,Jane Smith,680,45000,0.45,85
+CUST003,Bob Johnson,820,75000,0.25,98
+CUST004,Alice Brown,620,35000,0.55,75
+CUST005,Charlie Wilson,780,65000,0.30,92 

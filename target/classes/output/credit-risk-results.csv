@@ -1,0 +1,7 @@
+customerId,customerName,creditScore,income,debtToIncomeRatio,paymentHistory,riskCategory
+CUST001,John Doe,750.0,50000.0,0.35,95,VERY_HIGH
+CUST002,Jane Smith,680.0,45000.0,0.45,85,VERY_HIGH
+CUST003,Bob Johnson,820.0,75000.0,0.25,98,VERY_HIGH
+CUST004,Alice Brown,620.0,35000.0,0.55,75,VERY_HIGH
+CUST005,Charlie Wilson,780.0,65000.0,0.3,92,VERY_HIGH
+Pie de archivo

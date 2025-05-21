@@ -1,0 +1,10 @@
+com\example\creditrisk\CreditRiskBatchApplication.class
+com\example\creditrisk\config\BatchConfig$1.class
+com\example\creditrisk\model\CreditRiskData.class
+com\example\creditrisk\service\RiskAnalysisService.class
+com\example\creditrisk\config\BatchConfig$2.class
+com\example\creditrisk\config\BatchConfig.class
+com\example\creditrisk\writer\CreditRiskFileWriter.class
+com\example\creditrisk\processor\CreditRiskProcessor.class
+com\example\creditrisk\reader\CreditRiskItemReader.class
+com\example\creditrisk\writer\CreditRiskItemWriter.class
