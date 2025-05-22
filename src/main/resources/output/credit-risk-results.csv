@@ -1,7 +1,27 @@
 customerId,customerName,creditScore,income,debtToIncomeRatio,paymentHistory,riskCategory
-CUST001,John Doe,750.0,50000.0,0.35,95,VERY_HIGH
-CUST002,Jane Smith,680.0,45000.0,0.45,85,VERY_HIGH
-CUST003,Bob Johnson,820.0,75000.0,0.25,98,VERY_HIGH
-CUST004,Alice Brown,620.0,35000.0,0.55,75,VERY_HIGH
-CUST005,Charlie Wilson,780.0,65000.0,0.3,92,VERY_HIGH
+CUST001,John Smith,720,85000.0,0.35,95,Low
+CUST002,Maria Garcia,680,65000.0,0.45,88,Medium
+CUST003,Robert Johnson,580,45000.0,0.65,75,High
+CUST004,Sarah Williams,750,120000.0,0.25,98,Low
+CUST005,Michael Brown,620,55000.0,0.55,82,Medium
+CUST006,Lisa Chen,710,95000.0,0.3,92,Low
+CUST007,David Miller,590,48000.0,0.6,78,High
+CUST008,Emma Wilson,730,110000.0,0.28,96,Low
+CUST009,James Taylor,650,72000.0,0.4,85,Medium
+CUST010,Sophia Martinez,670,68000.0,0.42,87,Medium
+CUST011,Alex Rodriguez,780,150000.0,0.2,99,Low
+CUST012,Emily Chen,690,75000.0,0.38,90,Medium
+CUST013,Thomas Anderson,550,42000.0,0.7,72,High
+CUST014,Patricia White,760,130000.0,0.22,97,Low
+CUST015,Daniel Kim,630,58000.0,0.52,83,Medium
+CUST016,Jennifer Lee,710,92000.0,0.32,91,Low
+CUST017,Christopher Martin,570,46000.0,0.68,76,High
+CUST018,Rachel Green,740,105000.0,0.26,94,Low
+CUST019,William Turner,640,68000.0,0.45,84,Medium
+CUST020,Olivia Parker,660,70000.0,0.4,86,Medium
+CUST021,Marcus Johnson,590,44000.0,0.62,77,High
+CUST022,Sophie Anderson,770,140000.0,0.24,96,Low
+CUST023,Lucas Martinez,610,52000.0,0.58,80,Medium
+CUST024,Isabella Wong,730,98000.0,0.28,93,Low
+CUST025,Ethan Brown,560,43000.0,0.66,74,High
 Pie de archivo

@@ -1,6 +1,7 @@
 package com.example.creditrisk.reader;
 
 import com.example.creditrisk.model.CreditRiskData;
+import com.example.creditrisk.enums.CreditRiskColumn;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
@@ -18,14 +19,16 @@ public class CreditRiskItemReader extends FlatFileItemReader<CreditRiskData> {
         DefaultLineMapper<CreditRiskData> lineMapper = new DefaultLineMapper<>();
         
         DelimitedLineTokenizer tokenizer = new DelimitedLineTokenizer();
-        tokenizer.setNames("customerId", "customerName", "creditScore", "income", 
-                         "debtToIncomeRatio", "paymentHistory");
+        tokenizer.setNames(CreditRiskColumn.getAllColumnNames());
+        
+        // Configure tokenizer to handle empty fields
+        tokenizer.setStrict(false);
         
         BeanWrapperFieldSetMapper<CreditRiskData> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
         fieldSetMapper.setTargetType(CreditRiskData.class);
         
         lineMapper.setLineTokenizer(tokenizer);
-        lineMapper.setFieldSetMapper(fieldSetMapper);
+        lineMapper.setFieldSetMapper(new CreditRiskFieldSetMapper());
         
         setLineMapper(lineMapper);
     }

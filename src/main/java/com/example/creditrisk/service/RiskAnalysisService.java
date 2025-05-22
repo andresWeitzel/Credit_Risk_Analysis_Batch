@@ -1,6 +1,7 @@
 package com.example.creditrisk.service;
 
 import com.example.creditrisk.model.CreditRiskData;
+import com.example.creditrisk.enums.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -48,20 +49,20 @@ public class RiskAnalysisService {
         double finalScore = calculateFinalScore(baseScore, incomeRiskFactor, debtRiskFactor, paymentRiskFactor);
         
         // Determinar categoría de riesgo
-        String riskCategory = determineRiskCategory(finalScore);
+        RiskCategory riskCategory = determineRiskCategory(finalScore);
         
         // Calcular probabilidad de incumplimiento
         double defaultProbability = calculateDefaultProbability(finalScore);
         
         // Agregar resultados al análisis
-        analysis.put("baseScore", baseScore);
-        analysis.put("incomeRiskFactor", incomeRiskFactor);
-        analysis.put("debtRiskFactor", debtRiskFactor);
-        analysis.put("paymentRiskFactor", paymentRiskFactor);
-        analysis.put("finalScore", finalScore);
-        analysis.put("riskCategory", riskCategory);
-        analysis.put("defaultProbability", defaultProbability);
-        analysis.put("recommendations", generateRecommendations(analysis));
+        analysis.put(AnalysisKey.BASE_SCORE.getValue(), baseScore);
+        analysis.put(AnalysisKey.INCOME_RISK_FACTOR.getValue(), incomeRiskFactor);
+        analysis.put(AnalysisKey.DEBT_RISK_FACTOR.getValue(), debtRiskFactor);
+        analysis.put(AnalysisKey.PAYMENT_RISK_FACTOR.getValue(), paymentRiskFactor);
+        analysis.put(AnalysisKey.FINAL_SCORE.getValue(), finalScore);
+        analysis.put(AnalysisKey.RISK_CATEGORY.getValue(), riskCategory.getValue());
+        analysis.put(AnalysisKey.DEFAULT_PROBABILITY.getValue(), defaultProbability);
+        analysis.put(AnalysisKey.RECOMMENDATIONS.getValue(), generateRecommendations(analysis));
         
         return analysis;
     }
@@ -112,15 +113,15 @@ public class RiskAnalysisService {
         return Math.max(0, Math.min(100, riskScore));
     }
 
-    private String determineRiskCategory(double finalScore) {
+    private RiskCategory determineRiskCategory(double finalScore) {
         if (finalScore >= lowThreshold) {
-            return "LOW";
+            return RiskCategory.LOW;
         } else if (finalScore >= mediumThreshold) {
-            return "MEDIUM";
+            return RiskCategory.MEDIUM;
         } else if (finalScore >= highThreshold) {
-            return "HIGH";
+            return RiskCategory.HIGH;
         } else {
-            return "VERY_HIGH";
+            return RiskCategory.VERY_HIGH;
         }
     }
 
@@ -132,41 +133,41 @@ public class RiskAnalysisService {
 
     private Map<String, String> generateRecommendations(Map<String, Object> analysis) {
         Map<String, String> recommendations = new HashMap<>();
-        String riskCategory = (String) analysis.get("riskCategory");
-        double defaultProbability = (Double) analysis.get("defaultProbability");
+        RiskCategory riskCategory = RiskCategory.valueOf((String) analysis.get(AnalysisKey.RISK_CATEGORY.getValue()));
+        double defaultProbability = (Double) analysis.get(AnalysisKey.DEFAULT_PROBABILITY.getValue());
         
         switch (riskCategory) {
-            case "LOW":
-                recommendations.put("creditLimit", "Aumentar límite de crédito");
-                recommendations.put("interestRate", "Ofrecer tasa preferencial");
-                recommendations.put("terms", "Términos flexibles");
+            case LOW:
+                recommendations.put(RecommendationType.CREDIT_LIMIT.getValue(), "Aumentar límite de crédito");
+                recommendations.put(RecommendationType.INTEREST_RATE.getValue(), "Ofrecer tasa preferencial");
+                recommendations.put(RecommendationType.TERMS.getValue(), "Términos flexibles");
                 break;
-            case "MEDIUM":
-                recommendations.put("creditLimit", "Mantener límite actual");
-                recommendations.put("interestRate", "Tasa estándar");
-                recommendations.put("terms", "Términos estándar");
+            case MEDIUM:
+                recommendations.put(RecommendationType.CREDIT_LIMIT.getValue(), "Mantener límite actual");
+                recommendations.put(RecommendationType.INTEREST_RATE.getValue(), "Tasa estándar");
+                recommendations.put(RecommendationType.TERMS.getValue(), "Términos estándar");
                 break;
-            case "HIGH":
-                recommendations.put("creditLimit", "Reducir límite de crédito");
-                recommendations.put("interestRate", "Tasa más alta");
-                recommendations.put("terms", "Términos más estrictos");
+            case HIGH:
+                recommendations.put(RecommendationType.CREDIT_LIMIT.getValue(), "Reducir límite de crédito");
+                recommendations.put(RecommendationType.INTEREST_RATE.getValue(), "Tasa más alta");
+                recommendations.put(RecommendationType.TERMS.getValue(), "Términos más estrictos");
                 break;
-            case "VERY_HIGH":
-                recommendations.put("creditLimit", "Rechazar solicitud");
-                recommendations.put("interestRate", "No aplicable");
-                recommendations.put("terms", "No aplicable");
+            case VERY_HIGH:
+                recommendations.put(RecommendationType.CREDIT_LIMIT.getValue(), "Rechazar solicitud");
+                recommendations.put(RecommendationType.INTEREST_RATE.getValue(), "No aplicable");
+                recommendations.put(RecommendationType.TERMS.getValue(), "No aplicable");
                 break;
         }
         
         // Agregar recomendaciones específicas basadas en factores de riesgo
-        if ((Double) analysis.get("incomeRiskFactor") > 0.7) {
-            recommendations.put("income", "Solicitar comprobante de ingresos adicional");
+        if ((Double) analysis.get(AnalysisKey.INCOME_RISK_FACTOR.getValue()) > 0.7) {
+            recommendations.put(RecommendationType.INCOME.getValue(), "Solicitar comprobante de ingresos adicional");
         }
-        if ((Double) analysis.get("debtRiskFactor") > 0.7) {
-            recommendations.put("debt", "Recomendar reducción de deuda");
+        if ((Double) analysis.get(AnalysisKey.DEBT_RISK_FACTOR.getValue()) > 0.7) {
+            recommendations.put(RecommendationType.DEBT.getValue(), "Recomendar reducción de deuda");
         }
-        if ((Double) analysis.get("paymentRiskFactor") > 0.7) {
-            recommendations.put("payment", "Sugerir plan de pago estructurado");
+        if ((Double) analysis.get(AnalysisKey.PAYMENT_RISK_FACTOR.getValue()) > 0.7) {
+            recommendations.put(RecommendationType.PAYMENT.getValue(), "Sugerir plan de pago estructurado");
         }
         
         return recommendations;
