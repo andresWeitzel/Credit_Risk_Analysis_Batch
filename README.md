@@ -1,6 +1,9 @@
+<div align = "center">
+  <img src="./src/main/resources/static/img/credit_risk.png" >
+</div>
+
 # Credit Risk Analysis Batch Application
 
-## Descripción
 Esta aplicación Spring Batch está diseñada para analizar y evaluar el riesgo crediticio de clientes utilizando un sistema sofisticado de puntuación multifactorial. El sistema procesa datos de clientes desde un archivo CSV, realiza un análisis de riesgo detallado y genera resultados tanto en una base de datos H2 como en un archivo CSV de salida.
 
 ## Características Principales
