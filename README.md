@@ -65,51 +65,6 @@ src/main/java/com/example/creditrisk/
 
 ## Configuración
 
-### Archivo application.yml
-```yaml
-spring:
-  batch:
-    job:
-      enabled: true
-    chunk-size: 100
-    max-threads: 4
-    retry-policy:
-      max-attempts: 3
-      backoff:
-        initial-interval: 1000
-        multiplier: 2.0
-
-  datasource:
-    url: jdbc:h2:mem:creditriskdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password: 
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-        batch_size: 100
-        order_inserts: true
-        order_updates: true
-
-app:
-  batch:
-    risk:
-      thresholds:
-        low: 80
-        medium: 60
-        high: 40
-      weights:
-        credit-score: 0.4
-        income: 0.3
-        debt-ratio: 0.2
-        payment-history: 0.1
-```
-
 ## Ejecución
 
 1. Clonar el repositorio:
@@ -131,45 +86,95 @@ mvn spring-boot:run
 ## Formato de Datos de Entrada
 
 El archivo de entrada debe estar en formato CSV con las siguientes columnas:
+
+### Información Básica del Cliente
 - customerId: Identificador único del cliente
 - customerName: Nombre del cliente
+- birthDate: Fecha de nacimiento (YYYY-MM-DD)
+- age: Edad del cliente
+- maritalStatus: Estado civil (SINGLE, MARRIED, DIVORCED)
+- educationLevel: Nivel educativo (HIGH_SCHOOL, BACHELORS, MASTERS, DOCTORATE)
+
+### Información Financiera
 - creditScore: Puntaje de crédito (0-850)
 - income: Ingresos anuales
 - debtToIncomeRatio: Ratio deuda-ingreso (%)
+- monthlyExpenses: Gastos mensuales
+- savingsBalance: Saldo de ahorros
+- propertyValue: Valor de propiedades (si aplica)
+
+### Información Laboral
+- employmentType: Tipo de empleo (FULL_TIME, PART_TIME)
+- employmentYears: Años de empleo
+- industry: Industria/ Sector
+
+### Historial Crediticio
 - paymentHistory: Historial de pagos (0-100)
+- creditHistoryYears: Años de historial crediticio
+- numberOfCreditCards: Número de tarjetas de crédito
+- creditCardUtilization: Utilización de tarjetas de crédito (%)
+- hasBankruptcy: Indicador de quiebra
+- bankruptcyYearsAgo: Años desde la quiebra (si aplica)
+- hasForeclosure: Indicador de embargo
+- foreclosureYearsAgo: Años desde el embargo (si aplica)
+
+### Información de la Solicitud
+- loanAmount: Monto del préstamo
+- loanPurpose: Propósito del préstamo (MORTGAGE, CAR, PERSONAL, BUSINESS, EDUCATION, CONSOLIDATION, HOME_IMPROVEMENT, INVESTMENT)
+- existingLoans: Número de préstamos existentes
+- loanTerm: Plazo del préstamo (SHORT_TERM, MEDIUM_TERM, LONG_TERM)
+- interestRate: Tasa de interés (%)
+- collateralType: Tipo de garantía (NONE, REAL_ESTATE, VEHICLE, BUSINESS)
+- collateralValue: Valor de la garantía
+
+### Información de Residencia
+- residenceType: Tipo de residencia (OWN, RENT)
+- yearsAtCurrentAddress: Años en la dirección actual
+
+### Información del Garante
+- guarantorStatus: Estado del garante (NONE, REQUIRED)
+- guarantorCreditScore: Puntaje de crédito del garante
+- guarantorIncome: Ingresos del garante
+- guarantorRelationship: Relación con el garante (FAMILY, FRIEND, NA)
+
+### Campos de Análisis
+- riskCategory: Categoría de riesgo (LOW, MEDIUM, HIGH, VERY_HIGH)
+- status: Estado de la solicitud (ACTIVE, INACTIVE)
+- additionalInfo: Información adicional
+- recommendations: Recomendaciones específicas
 
 ### Ejemplo de Archivo de Entrada (credit-risk-data.csv)
 ```csv
 customerId,customerName,creditScore,income,debtToIncomeRatio,paymentHistory,employmentYears,loanAmount,loanPurpose,existingLoans,propertyValue,maritalStatus,educationLevel,industry,riskCategory,status,additionalInfo,recommendations,birthDate,age,employmentType,monthlyExpenses,savingsBalance,creditHistoryYears,numberOfCreditCards,creditCardUtilization,hasBankruptcy,bankruptcyYearsAgo,hasForeclosure,foreclosureYearsAgo,residenceType,yearsAtCurrentAddress,loanTerm,interestRate,collateralType,collateralValue,guarantorStatus,guarantorCreditScore,guarantorIncome,guarantorRelationship
-CUST001,John Doe,750,120000,0.35,95,5,50000,MORTGAGE,1,250000,MARRIED,BACHELORS,TECHNOLOGY,LOW,ACTIVE,Good payment history,Consider increasing credit limit,1980-01-15,43,FULL_TIME,3000,50000,15,2,0.25,false,0,false,0,OWN,10,LONG_TERM,3.5,REAL_ESTATE,250000,NONE,0,0,NA
-CUST002,Jane Smith,680,85000,0.45,85,3,30000,CAR,2,150000,SINGLE,MASTERS,FINANCE,MEDIUM,ACTIVE,Recent job change,Monitor payment history,1985-06-20,38,FULL_TIME,2500,30000,10,3,0.40,false,0,false,0,RENT,3,MEDIUM_TERM,4.5,VEHICLE,35000,NONE,0,0,NA
-CUST003,Bob Johnson,580,45000,0.65,70,1,15000,PERSONAL,3,0,DIVORCED,HIGH_SCHOOL,RETAIL,HIGH,ACTIVE,Past late payments,High risk profile,1990-03-10,33,PART_TIME,2000,5000,5,4,0.75,false,0,false,0,RENT,1,SHORT_TERM,7.5,NONE,0,REQUIRED,650,40000,FAMILY
-CUST004,Maria Garcia,820,180000,0.25,98,8,75000,BUSINESS,0,500000,MARRIED,DOCTORATE,HEALTHCARE,LOW,ACTIVE,Excellent credit history,Prime customer,1975-05-30,48,FULL_TIME,4500,200000,20,1,0.10,false,0,false,0,OWN,15,LONG_TERM,3.0,BUSINESS,500000,NONE,0,0,NA
-CUST005,David Chen,720,95000,0.40,88,4,40000,EDUCATION,1,0,SINGLE,MASTERS,EDUCATION,MEDIUM,ACTIVE,Stable employment,Good payment record,1988-11-12,35,FULL_TIME,2800,25000,8,2,0.35,false,0,false,0,RENT,4,MEDIUM_TERM,4.0,NONE,0,NONE,0,0,NA
-CUST006,Sarah Williams,650,78000,0.50,82,2,25000,CONSOLIDATION,4,120000,DIVORCED,BACHELORS,SERVICES,MEDIUM,ACTIVE,Multiple loans,High debt load,1992-03-25,31,FULL_TIME,2200,15000,6,3,0.60,false,0,false,0,RENT,2,MEDIUM_TERM,5.0,VEHICLE,25000,NONE,0,0,NA
-CUST007,Michael Brown,550,42000,0.70,65,1,10000,PERSONAL,2,0,SINGLE,HIGH_SCHOOL,CONSTRUCTION,HIGH,ACTIVE,Recent credit issues,High risk,1995-07-18,28,PART_TIME,1800,3000,3,2,0.80,false,0,false,0,RENT,1,SHORT_TERM,8.0,NONE,0,REQUIRED,600,35000,FRIEND
-CUST008,Emily Davis,780,150000,0.30,92,6,60000,INVESTMENT,1,300000,MARRIED,MASTERS,LEGAL,LOW,ACTIVE,Strong financial profile,Preferred customer,1982-09-05,41,FULL_TIME,4000,100000,12,2,0.20,false,0,false,0,OWN,8,LONG_TERM,3.2,REAL_ESTATE,300000,NONE,0,0,NA
-CUST009,James Wilson,600,48000,0.60,75,2,20000,CONSOLIDATION,3,0,SINGLE,BACHELORS,RETAIL,HIGH,ACTIVE,Multiple late payments,High risk,1993-12-20,30,FULL_TIME,2000,8000,4,3,0.70,false,0,false,0,RENT,2,MEDIUM_TERM,6.5,NONE,0,REQUIRED,620,40000,FAMILY
-CUST010,Lisa Anderson,700,88000,0.38,86,3,35000,HOME_IMPROVEMENT,1,200000,MARRIED,BACHELORS,MANUFACTURING,MEDIUM,ACTIVE,Stable profile,Good customer,1987-04-15,36,FULL_TIME,2600,40000,9,2,0.30,false,0,false,0,OWN,5,MEDIUM_TERM,4.2,REAL_ESTATE,200000,NONE,0,0,NA
+CUST001,John Smith,720,85000,0.35,95,8,150000,Mortgage,1,350000,Married,Bachelors,Technology,Low,Approved,Stable employment history,Consider refinancing in 2 years,1980-05-15,43,Full-time,3500,50000,15,2,0.25,false,0,false,0,Mortgage,5,Long-term,4.5,Real Estate,350000,None,,,,
+CUST002,Maria Garcia,680,65000,0.45,88,5,120000,Car,2,250000,Single,Masters,Healthcare,Medium,Approved,Recent job change,Monitor debt ratio,1988-08-22,35,Full-time,2800,25000,8,3,0.45,false,0,false,0,Rent,2,Medium-term,5.2,Vehicle,45000,None,,,,
+CUST003,Robert Johnson,580,45000,0.65,75,3,80000,Personal,3,180000,Divorced,High School,Retail,High,Rejected,Multiple late payments,Improve credit score,1975-11-30,48,Part-time,2200,5000,5,4,0.85,true,3,false,0,Rent,1,Short-term,7.5,None,0,Required,650,55000,Parent
+CUST004,Sarah Williams,750,120000,0.25,98,12,200000,Business,0,500000,Married,PhD,Finance,Low,Approved,Excellent credit history,Consider investment opportunities,1972-03-10,51,Self-employed,4500,150000,20,2,0.15,false,0,false,0,Own,10,Long-term,4.0,Real Estate,500000,None,,,,
+CUST005,Michael Brown,620,55000,0.55,82,4,95000,Education,1,220000,Single,Bachelors,Education,Medium,Approved,Student loan debt,Consolidate loans,1990-07-18,33,Full-time,2300,15000,6,2,0.60,false,0,false,0,Rent,3,Medium-term,5.8,None,0,None,,,,
+CUST006,Lisa Chen,710,95000,0.30,92,7,180000,Home Improvement,2,400000,Married,Masters,Engineering,Low,Approved,High property value,Consider home equity,1985-12-05,38,Full-time,3800,75000,12,3,0.30,false,0,false,0,Mortgage,6,Long-term,4.2,Real Estate,400000,None,,,,
+CUST007,David Miller,590,48000,0.60,78,2,70000,Debt Consolidation,4,150000,Single,Associates,Manufacturing,High,Rejected,High debt load,Debt management plan,1982-09-25,41,Contract,2100,8000,4,5,0.90,false,0,true,2,Rent,1,Short-term,8.0,None,0,Required,680,60000,Sibling
+CUST008,Emma Wilson,730,110000,0.28,96,10,250000,Investment,1,600000,Married,Bachelors,Real Estate,Low,Approved,Investment property,Portfolio diversification,1978-04-12,45,Self-employed,4200,200000,18,2,0.20,false,0,false,0,Own,8,Long-term,4.8,Real Estate,600000,None,,,,
+CUST009,James Taylor,650,72000,0.40,85,6,130000,Medical,2,280000,Married,Bachelors,Healthcare,Medium,Approved,Medical expenses,Health insurance review,1987-06-30,36,Full-time,3000,35000,9,3,0.50,false,0,false,0,Mortgage,4,Medium-term,5.5,Real Estate,280000,None,,,,
+CUST010,Sophia Martinez,670,68000,0.42,87,5,115000,Wedding,1,260000,Engaged,Bachelors,Marketing,Medium,Approved,Upcoming wedding,Budget planning,1992-02-14,31,Full-time,2900,20000,7,2,0.40,false,0,false,0,Rent,2,Short-term,6.0,None,0,Provided,700,75000,Fiance
 ```
 
 Estos ejemplos cubren una amplia gama de perfiles de clientes:
 
-1. **Clientes de Bajo Riesgo (CUST001, CUST004, CUST008)**:
+1. **Clientes de Bajo Riesgo (CUST001, CUST004, CUST006, CUST008)**:
    - Alto puntaje de crédito (>750)
    - Ingresos estables y altos
    - Bajo ratio deuda-ingreso
    - Excelente historial de pagos
    - Propiedades de alto valor como garantía
 
-2. **Clientes de Riesgo Medio (CUST002, CUST005, CUST006, CUST010)**:
+2. **Clientes de Riesgo Medio (CUST002, CUST005, CUST009, CUST010)**:
    - Puntaje de crédito moderado (650-720)
    - Ingresos estables pero moderados
    - Ratio deuda-ingreso aceptable
    - Buen historial de pagos con algunas variaciones
    - Mezcla de garantías y sin garantías
 
-3. **Clientes de Alto Riesgo (CUST003, CUST007, CUST009)**:
+3. **Clientes de Alto Riesgo (CUST003, CUST007)**:
    - Puntaje de crédito bajo (<600)
    - Ingresos bajos o inestables
    - Alto ratio deuda-ingreso
@@ -274,13 +279,128 @@ Cada perfil incluye variaciones en:
 
 La aplicación genera dos tipos de salida:
 
-1. **Base de Datos H2**:
-   - Tabla: credit_risk_data
-   - Campos: Todos los campos del modelo más resultados del análisis
+### 1. Base de Datos H2
+- **Tabla**: credit_risk_data
+- **Ubicación**: Memoria (H2 in-memory database)
+- **Acceso**: http://localhost:8080/h2-console
+- **Credenciales**: 
+  - JDBC URL: jdbc:h2:mem:creditriskdb
+  - Username: sa
+  - Password: (vacío)
 
-2. **Archivo CSV de Salida**:
-   - Ubicación: src/main/resources/output/credit-risk-results.csv
-   - Incluye: Datos originales más resultados del análisis
+### 2. Archivo CSV de Salida
+- **Ubicación**: src/main/resources/output/credit-risk-results.csv
+- **Formato**: CSV con las siguientes columnas:
+
+#### Campos Originales
+- Todos los campos del archivo de entrada (ver sección "Formato de Datos de Entrada")
+
+#### Campos de Análisis
+- baseScore: Puntaje base normalizado (0-100)
+- incomeRiskFactor: Factor de riesgo por ingresos (0-1)
+- debtRiskFactor: Factor de riesgo por deuda (0-1)
+- paymentRiskFactor: Factor de riesgo por historial de pagos (0-1)
+- finalScore: Puntaje final ponderado (0-100)
+- defaultProbability: Probabilidad de incumplimiento (0-1)
+- riskCategory: Categoría de riesgo (LOW, MEDIUM, HIGH, VERY_HIGH)
+
+#### Campos de Recomendaciones
+- creditLimitRecommendation: Recomendación de límite de crédito
+- interestRateRecommendation: Recomendación de tasa de interés
+- termsRecommendation: Recomendación de términos
+- incomeRecommendation: Recomendación relacionada con ingresos
+- debtRecommendation: Recomendación relacionada con deuda
+- paymentRecommendation: Recomendación relacionada con pagos
+
+### Ejemplo de Archivo de Salida (credit-risk-results.csv)
+```csv
+customerId,customerName,creditScore,income,debtToIncomeRatio,paymentHistory,riskCategory
+CUST001,John Smith,720,85000.0,0.35,95,Low
+CUST002,Maria Garcia,680,65000.0,0.45,88,Medium
+CUST003,Robert Johnson,580,45000.0,0.65,75,High
+CUST004,Sarah Williams,750,120000.0,0.25,98,Low
+CUST005,Michael Brown,620,55000.0,0.55,82,Medium
+CUST006,Lisa Chen,710,95000.0,0.3,92,Low
+CUST007,David Miller,590,48000.0,0.6,78,High
+CUST008,Emma Wilson,730,110000.0,0.28,96,Low
+CUST009,James Taylor,650,72000.0,0.4,85,Medium
+CUST010,Sophia Martinez,670,68000.0,0.42,87,Medium
+```
+
+### Análisis de los Resultados
+
+#### Clientes de Bajo Riesgo (CUST001, CUST004, CUST006, CUST008)
+- **CUST001 (John Smith)**: 
+  - Puntaje de Crédito: 720 (Bueno)
+  - Ingresos: $85,000 (Estable)
+  - Ratio Deuda-Ingreso: 0.35 (Bajo)
+  - Historial de Pagos: 95% (Excelente)
+  - Recomendaciones: Considerar refinanciamiento en 2 años
+
+- **CUST004 (Sarah Williams)**:
+  - Puntaje de Crédito: 750 (Excelente)
+  - Ingresos: $120,000 (Alto)
+  - Ratio Deuda-Ingreso: 0.25 (Muy bajo)
+  - Historial de Pagos: 98% (Excelente)
+  - Recomendaciones: Considerar oportunidades de inversión
+
+- **CUST006 (Lisa Chen)**:
+  - Puntaje de Crédito: 710 (Bueno)
+  - Ingresos: $95,000 (Estable)
+  - Ratio Deuda-Ingreso: 0.30 (Bajo)
+  - Historial de Pagos: 92% (Excelente)
+  - Recomendaciones: Considerar línea de crédito hipotecaria
+
+- **CUST008 (Emma Wilson)**:
+  - Puntaje de Crédito: 730 (Excelente)
+  - Ingresos: $110,000 (Alto)
+  - Ratio Deuda-Ingreso: 0.28 (Bajo)
+  - Historial de Pagos: 96% (Excelente)
+  - Recomendaciones: Diversificación de portafolio
+
+#### Clientes de Riesgo Medio (CUST002, CUST005, CUST009, CUST010)
+- **CUST002 (Maria Garcia)**:
+  - Puntaje de Crédito: 680 (Regular)
+  - Ingresos: $65,000 (Estable)
+  - Ratio Deuda-Ingreso: 0.45 (Moderado)
+  - Historial de Pagos: 88% (Bueno)
+  - Recomendaciones: Monitorear ratio de deuda
+
+- **CUST005 (Michael Brown)**:
+  - Puntaje de Crédito: 620 (Regular)
+  - Ingresos: $55,000 (Estable)
+  - Ratio Deuda-Ingreso: 0.55 (Alto)
+  - Historial de Pagos: 82% (Bueno)
+  - Recomendaciones: Consolidar préstamos
+
+- **CUST009 (James Taylor)**:
+  - Puntaje de Crédito: 650 (Regular)
+  - Ingresos: $72,000 (Estable)
+  - Ratio Deuda-Ingreso: 0.40 (Moderado)
+  - Historial de Pagos: 85% (Bueno)
+  - Recomendaciones: Revisar seguro de salud
+
+- **CUST010 (Sophia Martinez)**:
+  - Puntaje de Crédito: 670 (Regular)
+  - Ingresos: $68,000 (Estable)
+  - Ratio Deuda-Ingreso: 0.42 (Moderado)
+  - Historial de Pagos: 87% (Bueno)
+  - Recomendaciones: Planificación de presupuesto
+
+#### Clientes de Alto Riesgo (CUST003, CUST007)
+- **CUST003 (Robert Johnson)**:
+  - Puntaje de Crédito: 580 (Bajo)
+  - Ingresos: $45,000 (Bajo)
+  - Ratio Deuda-Ingreso: 0.65 (Muy alto)
+  - Historial de Pagos: 75% (Regular)
+  - Recomendaciones: Mejorar puntaje de crédito
+
+- **CUST007 (David Miller)**:
+  - Puntaje de Crédito: 590 (Bajo)
+  - Ingresos: $48,000 (Bajo)
+  - Ratio Deuda-Ingreso: 0.60 (Alto)
+  - Historial de Pagos: 78% (Regular)
+  - Recomendaciones: Plan de gestión de deuda
 
 ## Monitoreo
 
