@@ -1,149 +1,197 @@
-<div align = "center">
+<div align="center">
   <img src="./src/main/resources/static/img/credit_risk.png" >
 </div>
 
-# Credit Risk Analysis Batch Application
+  <div align="right">
+    <img width="24" height="24" src="./src/main/resources/static/icons/backend/java/png/java.png" />
+    <img width="20" height="20" src="./src/main/resources/static/icons/devops/png/maven.png" />
+    <img width="22" height="22" src="./src/main/resources/static/icons/devops/png/postman.png" />
+    <img width="22" height="22" src="./src/main/resources/static/icons/devops/png/git.png" />
+    <img width="20" height="20" src="./src/main/resources/static/icons/backend/java/png/junit.png" />
+    <img width="20" height="20" src="./src/main/resources/static/icons/backend/java/png/spring-boot.png" /> 
+    <img width="20" height="20" src="./src/main/resources/static/icons/backend/java/png/spring-batch.png" />    
+  </div>
 
-Esta aplicación Spring Batch está diseñada para analizar y evaluar el riesgo crediticio de clientes utilizando un sistema sofisticado de puntuación multifactorial. El sistema procesa datos de clientes desde un archivo CSV, realiza un análisis de riesgo detallado y genera resultados tanto en una base de datos H2 como en un archivo CSV de salida.
+<br>
 
-## Características Principales
+<br>
 
-### 1. Análisis de Riesgo Multifactorial
-- **Puntuación Base de Crédito**: Normalización y ponderación del puntaje de crédito
-- **Factores de Riesgo**:
-  - Factor de Ingresos
-  - Factor de Ratio Deuda-Ingreso
-  - Factor de Historial de Pagos
-- **Cálculo de Probabilidad de Incumplimiento**: Utilizando función sigmoide
-- **Categorización de Riesgo**: LOW, MEDIUM, HIGH, VERY_HIGH
 
-### 2. Sistema de Recomendaciones
-- Límites de crédito sugeridos
-- Tasas de interés recomendadas
-- Términos de crédito
-- Recomendaciones específicas por factor de riesgo
+<div align="right"> 
+  <a href="https://github.com/andresWeitzel/Credit_Risk_Analysis_Batch/blob/master/translation/README.es.md">
+    <img width="65" height="40" src="./src/main/resources/static/icons/translation/arg-flag.jpg" />
+  </a> 
+  <a href="https://github.com/andresWeitzel/Credit_Risk_Analysis_Batch/blob/master/README.md">
+    <img width="65" height="40" src="./src/main/resources/static/icons/translation/eeuu-flag.jpg" />
+  </a> 
+</div>
 
-### 3. Procesamiento por Lotes
-- Lectura de datos desde CSV
-- Procesamiento en chunks configurables
-- Escritura en base de datos y archivo CSV
-- Manejo de errores y reintentos
+<br>
 
-### 4. Monitoreo y Métricas
-- Endpoints de Actuator para monitoreo
-- Integración con Prometheus
-- Logging detallado
-- Métricas de rendimiento
+<br>
 
-## Requisitos Técnicos
+<div align="center">
 
-- Java 17 o superior
-- Maven 3.6 o superior
+# Credit Risk Analysis Batch ![Status](./src/main/resources/static/icons/badges/status-completed.svg)
+
+</div>
+
+This Spring Batch application is designed to analyze and evaluate customer credit risk using a sophisticated multifactorial scoring system. The system processes customer data from a CSV file, performs detailed risk analysis, and generates results in both an H2 database and an output CSV file.
+
+* [Functional tests playlist]() <a href="" target="_blank"> <img src="./src/main/resources/static/icons/social-networks/yt.png" width="25" /></a>
+
+
+## Sections
+
+<details>
+<summary>1. Main Features</summary>
+
+### 1.1 Multifactorial Risk Analysis
+- **Base Credit Score**: Credit score normalization and weighting
+- **Risk Factors**:
+  - Income Factor
+  - Debt-to-Income Ratio Factor
+  - Payment History Factor
+- **Default Probability Calculation**: Using sigmoid function
+- **Risk Categorization**: LOW, MEDIUM, HIGH, VERY_HIGH
+
+### 1.2 Recommendation System
+- Suggested credit limits
+- Recommended interest rates
+- Credit terms
+- Specific recommendations by risk factor
+
+### 1.3 Batch Processing
+- CSV data reading
+- Configurable chunk processing
+- Database and CSV file writing
+- Error handling and retries
+
+### 1.4 Monitoring and Metrics
+- Actuator endpoints for monitoring
+- Prometheus integration
+- Detailed logging
+- Performance metrics
+</details>
+
+<details>
+<summary>2. Technical Requirements and Structure</summary>
+
+### 2.1 Technical Requirements
+- Java 17 or higher
+- Maven 3.6 or higher
 - Spring Boot 3.x
 - Spring Batch 5.x
 - H2 Database
 - Caffeine Cache
 
-## Estructura del Proyecto
-
+### 2.2 Project Structure
 ```
 src/main/java/com/example/creditrisk/
 ├── config/
-│   └── BatchConfig.java         # Configuración del batch job
+│   └── BatchConfig.java         # Batch job configuration
 ├── model/
-│   └── CreditRiskData.java      # Modelo de datos
+│   └── CreditRiskData.java      # Data model
 ├── processor/
-│   └── CreditRiskProcessor.java # Procesador de riesgo
+│   └── CreditRiskProcessor.java # Risk processor
 ├── reader/
-│   └── CreditRiskItemReader.java # Lector de datos
+│   └── CreditRiskItemReader.java # Data reader
 ├── service/
-│   └── RiskAnalysisService.java # Servicio de análisis de riesgo
+│   └── RiskAnalysisService.java # Risk analysis service
 ├── writer/
-│   └── CreditRiskFileWriter.java # Escritor de resultados
+│   └── CreditRiskFileWriter.java # Results writer
 └── CreditRiskBatchApplication.java
 ```
+</details>
 
-## Configuración
+<details>
+<summary>3. Configuration and Execution</summary>
 
-## Ejecución
+### 3.1 Configuration
 
-1. Clonar el repositorio:
+### 3.2 Execution
+
+1. Clone the repository:
 ```bash
-git clone [url-del-repositorio]
+git clone [repository-url]
 cd credit-risk-batch
 ```
 
-2. Compilar el proyecto:
+2. Build the project:
 ```bash
 mvn clean install
 ```
 
-3. Ejecutar la aplicación:
+3. Run the application:
 ```bash
 mvn spring-boot:run
 ```
+</details>
 
-## Formato de Datos de Entrada
+<details>
+<summary>4. Data Format and Examples</summary>
 
-El archivo de entrada debe estar en formato CSV con las siguientes columnas:
+### 4.1 Input Data Format
 
-### Información Básica del Cliente
-- customerId: Identificador único del cliente
-- customerName: Nombre del cliente
-- birthDate: Fecha de nacimiento (YYYY-MM-DD)
-- age: Edad del cliente
-- maritalStatus: Estado civil (SINGLE, MARRIED, DIVORCED)
-- educationLevel: Nivel educativo (HIGH_SCHOOL, BACHELORS, MASTERS, DOCTORATE)
+The input file must be in CSV format with the following columns:
 
-### Información Financiera
-- creditScore: Puntaje de crédito (0-850)
-- income: Ingresos anuales
-- debtToIncomeRatio: Ratio deuda-ingreso (%)
-- monthlyExpenses: Gastos mensuales
-- savingsBalance: Saldo de ahorros
-- propertyValue: Valor de propiedades (si aplica)
+#### Basic Customer Information
+- customerId: Unique customer identifier
+- customerName: Customer name
+- birthDate: Birth date (YYYY-MM-DD)
+- age: Customer age
+- maritalStatus: Marital status (SINGLE, MARRIED, DIVORCED)
+- educationLevel: Education level (HIGH_SCHOOL, BACHELORS, MASTERS, DOCTORATE)
 
-### Información Laboral
-- employmentType: Tipo de empleo (FULL_TIME, PART_TIME)
-- employmentYears: Años de empleo
-- industry: Industria/ Sector
+#### Financial Information
+- creditScore: Credit score (0-850)
+- income: Annual income
+- debtToIncomeRatio: Debt-to-income ratio (%)
+- monthlyExpenses: Monthly expenses
+- savingsBalance: Savings balance
+- propertyValue: Property value (if applicable)
 
-### Historial Crediticio
-- paymentHistory: Historial de pagos (0-100)
-- creditHistoryYears: Años de historial crediticio
-- numberOfCreditCards: Número de tarjetas de crédito
-- creditCardUtilization: Utilización de tarjetas de crédito (%)
-- hasBankruptcy: Indicador de quiebra
-- bankruptcyYearsAgo: Años desde la quiebra (si aplica)
-- hasForeclosure: Indicador de embargo
-- foreclosureYearsAgo: Años desde el embargo (si aplica)
+#### Employment Information
+- employmentType: Employment type (FULL_TIME, PART_TIME)
+- employmentYears: Years of employment
+- industry: Industry/Sector
 
-### Información de la Solicitud
-- loanAmount: Monto del préstamo
-- loanPurpose: Propósito del préstamo (MORTGAGE, CAR, PERSONAL, BUSINESS, EDUCATION, CONSOLIDATION, HOME_IMPROVEMENT, INVESTMENT)
-- existingLoans: Número de préstamos existentes
-- loanTerm: Plazo del préstamo (SHORT_TERM, MEDIUM_TERM, LONG_TERM)
-- interestRate: Tasa de interés (%)
-- collateralType: Tipo de garantía (NONE, REAL_ESTATE, VEHICLE, BUSINESS)
-- collateralValue: Valor de la garantía
+#### Credit History
+- paymentHistory: Payment history (0-100)
+- creditHistoryYears: Years of credit history
+- numberOfCreditCards: Number of credit cards
+- creditCardUtilization: Credit card utilization (%)
+- hasBankruptcy: Bankruptcy indicator
+- bankruptcyYearsAgo: Years since bankruptcy (if applicable)
+- hasForeclosure: Foreclosure indicator
+- foreclosureYearsAgo: Years since foreclosure (if applicable)
 
-### Información de Residencia
-- residenceType: Tipo de residencia (OWN, RENT)
-- yearsAtCurrentAddress: Años en la dirección actual
+#### Loan Information
+- loanAmount: Loan amount
+- loanPurpose: Loan purpose (MORTGAGE, CAR, PERSONAL, BUSINESS, EDUCATION, CONSOLIDATION, HOME_IMPROVEMENT, INVESTMENT)
+- existingLoans: Number of existing loans
+- loanTerm: Loan term (SHORT_TERM, MEDIUM_TERM, LONG_TERM)
+- interestRate: Interest rate (%)
+- collateralType: Collateral type (NONE, REAL_ESTATE, VEHICLE, BUSINESS)
+- collateralValue: Collateral value
 
-### Información del Garante
-- guarantorStatus: Estado del garante (NONE, REQUIRED)
-- guarantorCreditScore: Puntaje de crédito del garante
-- guarantorIncome: Ingresos del garante
-- guarantorRelationship: Relación con el garante (FAMILY, FRIEND, NA)
+#### Residence Information
+- residenceType: Residence type (OWN, RENT)
+- yearsAtCurrentAddress: Years at current address
 
-### Campos de Análisis
-- riskCategory: Categoría de riesgo (LOW, MEDIUM, HIGH, VERY_HIGH)
-- status: Estado de la solicitud (ACTIVE, INACTIVE)
-- additionalInfo: Información adicional
-- recommendations: Recomendaciones específicas
+#### Guarantor Information
+- guarantorStatus: Guarantor status (NONE, REQUIRED)
+- guarantorCreditScore: Guarantor credit score
+- guarantorIncome: Guarantor income
+- guarantorRelationship: Relationship with guarantor (FAMILY, FRIEND, NA)
 
-### Ejemplo de Archivo de Entrada (credit-risk-data.csv)
+#### Analysis Fields
+- riskCategory: Risk category (LOW, MEDIUM, HIGH, VERY_HIGH)
+- status: Application status (ACTIVE, INACTIVE)
+- additionalInfo: Additional information
+- recommendations: Specific recommendations
+
+### 4.2 Input File Example
 ```csv
 customerId,customerName,creditScore,income,debtToIncomeRatio,paymentHistory,employmentYears,loanAmount,loanPurpose,existingLoans,propertyValue,maritalStatus,educationLevel,industry,riskCategory,status,additionalInfo,recommendations,birthDate,age,employmentType,monthlyExpenses,savingsBalance,creditHistoryYears,numberOfCreditCards,creditCardUtilization,hasBankruptcy,bankruptcyYearsAgo,hasForeclosure,foreclosureYearsAgo,residenceType,yearsAtCurrentAddress,loanTerm,interestRate,collateralType,collateralValue,guarantorStatus,guarantorCreditScore,guarantorIncome,guarantorRelationship
 CUST001,John Smith,720,85000,0.35,95,8,150000,Mortgage,1,350000,Married,Bachelors,Technology,Low,Approved,Stable employment history,Consider refinancing in 2 years,1980-05-15,43,Full-time,3500,50000,15,2,0.25,false,0,false,0,Mortgage,5,Long-term,4.5,Real Estate,350000,None,,,,
@@ -157,42 +205,14 @@ CUST008,Emma Wilson,730,110000,0.28,96,10,250000,Investment,1,600000,Married,Bac
 CUST009,James Taylor,650,72000,0.40,85,6,130000,Medical,2,280000,Married,Bachelors,Healthcare,Medium,Approved,Medical expenses,Health insurance review,1987-06-30,36,Full-time,3000,35000,9,3,0.50,false,0,false,0,Mortgage,4,Medium-term,5.5,Real Estate,280000,None,,,,
 CUST010,Sophia Martinez,670,68000,0.42,87,5,115000,Wedding,1,260000,Engaged,Bachelors,Marketing,Medium,Approved,Upcoming wedding,Budget planning,1992-02-14,31,Full-time,2900,20000,7,2,0.40,false,0,false,0,Rent,2,Short-term,6.0,None,0,Provided,700,75000,Fiance
 ```
+</details>
 
-Estos ejemplos cubren una amplia gama de perfiles de clientes:
+<details>
+<summary>5. Use Cases and Analysis</summary>
 
-1. **Clientes de Bajo Riesgo (CUST001, CUST004, CUST006, CUST008)**:
-   - Alto puntaje de crédito (>750)
-   - Ingresos estables y altos
-   - Bajo ratio deuda-ingreso
-   - Excelente historial de pagos
-   - Propiedades de alto valor como garantía
+### 5.1 Use Cases
 
-2. **Clientes de Riesgo Medio (CUST002, CUST005, CUST009, CUST010)**:
-   - Puntaje de crédito moderado (650-720)
-   - Ingresos estables pero moderados
-   - Ratio deuda-ingreso aceptable
-   - Buen historial de pagos con algunas variaciones
-   - Mezcla de garantías y sin garantías
-
-3. **Clientes de Alto Riesgo (CUST003, CUST007)**:
-   - Puntaje de crédito bajo (<600)
-   - Ingresos bajos o inestables
-   - Alto ratio deuda-ingreso
-   - Historial de pagos problemático
-   - Requieren garantías adicionales
-
-Cada perfil incluye variaciones en:
-- Estado civil
-- Nivel educativo
-- Tipo de empleo
-- Propósito del préstamo
-- Historial crediticio
-- Garantías disponibles
-- Relación con garantes
-
-## Casos de Uso y Ejemplos
-
-### 1. Cliente de Bajo Riesgo (CUST001)
+#### Low Risk Customer (CUST001)
 ```json
 {
   "customerId": "CUST001",
@@ -204,14 +224,14 @@ Cada perfil incluye variaciones en:
   "finalScore": 85.0,
   "defaultProbability": 0.12,
   "recommendations": {
-    "creditLimit": "Aumentar límite de crédito",
-    "interestRate": "Ofrecer tasa preferencial",
-    "terms": "Términos flexibles"
+    "creditLimit": "Increase credit limit",
+    "interestRate": "Offer preferred rate",
+    "terms": "Flexible terms"
   }
 }
 ```
 
-### 2. Cliente de Riesgo Medio (CUST002)
+#### Medium Risk Customer (CUST002)
 ```json
 {
   "customerId": "CUST002",
@@ -223,15 +243,15 @@ Cada perfil incluye variaciones en:
   "finalScore": 65.0,
   "defaultProbability": 0.28,
   "recommendations": {
-    "creditLimit": "Mantener límite actual",
-    "interestRate": "Tasa estándar",
-    "terms": "Términos estándar",
-    "payment": "Sugerir plan de pago estructurado"
+    "creditLimit": "Maintain current limit",
+    "interestRate": "Standard rate",
+    "terms": "Standard terms",
+    "payment": "Suggest structured payment plan"
   }
 }
 ```
 
-### 3. Cliente de Alto Riesgo (CUST003)
+#### High Risk Customer (CUST003)
 ```json
 {
   "customerId": "CUST003",
@@ -243,181 +263,99 @@ Cada perfil incluye variaciones en:
   "finalScore": 45.0,
   "defaultProbability": 0.62,
   "recommendations": {
-    "creditLimit": "Reducir límite de crédito",
-    "interestRate": "Tasa más alta",
-    "terms": "Términos más estrictos",
-    "income": "Solicitar comprobante de ingresos adicional",
-    "debt": "Recomendar reducción de deuda",
-    "payment": "Sugerir plan de pago estructurado"
+    "creditLimit": "Reduce credit limit",
+    "interestRate": "Higher rate",
+    "terms": "Stricter terms",
+    "income": "Request additional income verification",
+    "debt": "Recommend debt reduction",
+    "payment": "Suggest structured payment plan"
   }
 }
 ```
 
-## Factores de Análisis
+### 5.2 Analysis Factors
 
-### 1. Puntuación Base de Crédito
-- Normalización: (creditScore / 850) * 100
-- Peso: 40% del puntaje final
-- Ejemplo: 750 puntos → 88.2 puntos normalizados
+#### Base Credit Score
+- Normalization: (creditScore / 850) * 100
+- Weight: 40% of final score
+- Example: 750 points → 88.2 normalized points
 
-### 2. Factor de Ingresos
-- Normalización: min(income / 200000, 1.0)
-- Peso: 30% del puntaje final
-- Ejemplo: $120,000 → 0.6 normalizado
+#### Income Factor
+- Normalization: min(income / 200000, 1.0)
+- Weight: 30% of final score
+- Example: $120,000 → 0.6 normalized
 
-### 3. Factor de Ratio Deuda-Ingreso
-- Normalización: min(debtToIncomeRatio / 100, 1.0)
-- Peso: 20% del puntaje final
-- Ejemplo: 0.35 (35%) → 0.35 normalizado
+#### Debt-to-Income Ratio Factor
+- Normalization: min(debtToIncomeRatio / 100, 1.0)
+- Weight: 20% of final score
+- Example: 0.35 (35%) → 0.35 normalized
 
-### 4. Factor de Historial de Pagos
-- Normalización: paymentHistory / 100
-- Peso: 10% del puntaje final
-- Ejemplo: 95% → 0.95 normalizado
+#### Payment History Factor
+- Normalization: paymentHistory / 100
+- Weight: 10% of final score
+- Example: 95% → 0.95 normalized
+</details>
 
-## Resultados
+<details>
+<summary>6. Results and Monitoring</summary>
 
-La aplicación genera dos tipos de salida:
+### 6.1 Results
 
-### 1. Base de Datos H2
-- **Tabla**: credit_risk_data
-- **Ubicación**: Memoria (H2 in-memory database)
-- **Acceso**: http://localhost:8080/h2-console
-- **Credenciales**: 
+The application generates two types of output:
+
+#### H2 Database
+- **Table**: credit_risk_data
+- **Location**: Memory (H2 in-memory database)
+- **Access**: http://localhost:8080/h2-console
+- **Credentials**: 
   - JDBC URL: jdbc:h2:mem:creditriskdb
   - Username: sa
-  - Password: (vacío)
+  - Password: (empty)
 
-### 2. Archivo CSV de Salida
-- **Ubicación**: src/main/resources/output/credit-risk-results.csv
-- **Formato**: CSV con las siguientes columnas:
+#### Output CSV File
+- **Location**: src/main/resources/output/credit-risk-results.csv
+- **Format**: CSV with the following columns:
 
-#### Campos Originales
-- Todos los campos del archivo de entrada (ver sección "Formato de Datos de Entrada")
+##### Original Fields
+- All fields from the input file
 
-#### Campos de Análisis
-- baseScore: Puntaje base normalizado (0-100)
-- incomeRiskFactor: Factor de riesgo por ingresos (0-1)
-- debtRiskFactor: Factor de riesgo por deuda (0-1)
-- paymentRiskFactor: Factor de riesgo por historial de pagos (0-1)
-- finalScore: Puntaje final ponderado (0-100)
-- defaultProbability: Probabilidad de incumplimiento (0-1)
-- riskCategory: Categoría de riesgo (LOW, MEDIUM, HIGH, VERY_HIGH)
+##### Analysis Fields
+- baseScore: Normalized base score (0-100)
+- incomeRiskFactor: Income risk factor (0-1)
+- debtRiskFactor: Debt risk factor (0-1)
+- paymentRiskFactor: Payment history risk factor (0-1)
+- finalScore: Weighted final score (0-100)
+- defaultProbability: Default probability (0-1)
+- riskCategory: Risk category (LOW, MEDIUM, HIGH, VERY_HIGH)
 
-#### Campos de Recomendaciones
-- creditLimitRecommendation: Recomendación de límite de crédito
-- interestRateRecommendation: Recomendación de tasa de interés
-- termsRecommendation: Recomendación de términos
-- incomeRecommendation: Recomendación relacionada con ingresos
-- debtRecommendation: Recomendación relacionada con deuda
-- paymentRecommendation: Recomendación relacionada con pagos
+##### Recommendation Fields
+- creditLimitRecommendation: Credit limit recommendation
+- interestRateRecommendation: Interest rate recommendation
+- termsRecommendation: Terms recommendation
+- incomeRecommendation: Income-related recommendation
+- debtRecommendation: Debt-related recommendation
+- paymentRecommendation: Payment-related recommendation
 
-### Ejemplo de Archivo de Salida (credit-risk-results.csv)
-```csv
-customerId,customerName,creditScore,income,debtToIncomeRatio,paymentHistory,riskCategory
-CUST001,John Smith,720,85000.0,0.35,95,Low
-CUST002,Maria Garcia,680,65000.0,0.45,88,Medium
-CUST003,Robert Johnson,580,45000.0,0.65,75,High
-CUST004,Sarah Williams,750,120000.0,0.25,98,Low
-CUST005,Michael Brown,620,55000.0,0.55,82,Medium
-CUST006,Lisa Chen,710,95000.0,0.3,92,Low
-CUST007,David Miller,590,48000.0,0.6,78,High
-CUST008,Emma Wilson,730,110000.0,0.28,96,Low
-CUST009,James Taylor,650,72000.0,0.4,85,Medium
-CUST010,Sophia Martinez,670,68000.0,0.42,87,Medium
-```
+### 6.2 Monitoring
 
-### Análisis de los Resultados
+The application exposes several monitoring endpoints:
 
-#### Clientes de Bajo Riesgo (CUST001, CUST004, CUST006, CUST008)
-- **CUST001 (John Smith)**: 
-  - Puntaje de Crédito: 720 (Bueno)
-  - Ingresos: $85,000 (Estable)
-  - Ratio Deuda-Ingreso: 0.35 (Bajo)
-  - Historial de Pagos: 95% (Excelente)
-  - Recomendaciones: Considerar refinanciamiento en 2 años
+- `/actuator/health`: Application status
+- `/actuator/metrics`: Performance metrics
+- `/actuator/prometheus`: Prometheus format metrics
+</details>
 
-- **CUST004 (Sarah Williams)**:
-  - Puntaje de Crédito: 750 (Excelente)
-  - Ingresos: $120,000 (Alto)
-  - Ratio Deuda-Ingreso: 0.25 (Muy bajo)
-  - Historial de Pagos: 98% (Excelente)
-  - Recomendaciones: Considerar oportunidades de inversión
+<details>
+<summary>7. Contribution and License</summary>
 
-- **CUST006 (Lisa Chen)**:
-  - Puntaje de Crédito: 710 (Bueno)
-  - Ingresos: $95,000 (Estable)
-  - Ratio Deuda-Ingreso: 0.30 (Bajo)
-  - Historial de Pagos: 92% (Excelente)
-  - Recomendaciones: Considerar línea de crédito hipotecaria
+### 7.1 Contribution
 
-- **CUST008 (Emma Wilson)**:
-  - Puntaje de Crédito: 730 (Excelente)
-  - Ingresos: $110,000 (Alto)
-  - Ratio Deuda-Ingreso: 0.28 (Bajo)
-  - Historial de Pagos: 96% (Excelente)
-  - Recomendaciones: Diversificación de portafolio
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-#### Clientes de Riesgo Medio (CUST002, CUST005, CUST009, CUST010)
-- **CUST002 (Maria Garcia)**:
-  - Puntaje de Crédito: 680 (Regular)
-  - Ingresos: $65,000 (Estable)
-  - Ratio Deuda-Ingreso: 0.45 (Moderado)
-  - Historial de Pagos: 88% (Bueno)
-  - Recomendaciones: Monitorear ratio de deuda
+### 7.2 License
 
-- **CUST005 (Michael Brown)**:
-  - Puntaje de Crédito: 620 (Regular)
-  - Ingresos: $55,000 (Estable)
-  - Ratio Deuda-Ingreso: 0.55 (Alto)
-  - Historial de Pagos: 82% (Bueno)
-  - Recomendaciones: Consolidar préstamos
-
-- **CUST009 (James Taylor)**:
-  - Puntaje de Crédito: 650 (Regular)
-  - Ingresos: $72,000 (Estable)
-  - Ratio Deuda-Ingreso: 0.40 (Moderado)
-  - Historial de Pagos: 85% (Bueno)
-  - Recomendaciones: Revisar seguro de salud
-
-- **CUST010 (Sophia Martinez)**:
-  - Puntaje de Crédito: 670 (Regular)
-  - Ingresos: $68,000 (Estable)
-  - Ratio Deuda-Ingreso: 0.42 (Moderado)
-  - Historial de Pagos: 87% (Bueno)
-  - Recomendaciones: Planificación de presupuesto
-
-#### Clientes de Alto Riesgo (CUST003, CUST007)
-- **CUST003 (Robert Johnson)**:
-  - Puntaje de Crédito: 580 (Bajo)
-  - Ingresos: $45,000 (Bajo)
-  - Ratio Deuda-Ingreso: 0.65 (Muy alto)
-  - Historial de Pagos: 75% (Regular)
-  - Recomendaciones: Mejorar puntaje de crédito
-
-- **CUST007 (David Miller)**:
-  - Puntaje de Crédito: 590 (Bajo)
-  - Ingresos: $48,000 (Bajo)
-  - Ratio Deuda-Ingreso: 0.60 (Alto)
-  - Historial de Pagos: 78% (Regular)
-  - Recomendaciones: Plan de gestión de deuda
-
-## Monitoreo
-
-La aplicación expone varios endpoints de monitoreo:
-
-- `/actuator/health`: Estado de la aplicación
-- `/actuator/metrics`: Métricas de rendimiento
-- `/actuator/prometheus`: Métricas en formato Prometheus
-
-## Contribución
-
-1. Fork el repositorio
-2. Crear una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abrir un Pull Request
-
-## Licencia
-
-Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles. 
+This project is under the MIT License. See the `LICENSE` file for more details. 
