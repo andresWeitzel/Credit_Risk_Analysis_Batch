@@ -18,10 +18,10 @@
 
 
 <div align="right"> 
-  <a href="https://github.com/andresWeitzel/Credit_Risk_Analysis_Batch/blob/master/translation/README.es.md">
+  <a href="./src/main/resources/static/translation/README.es.md">
     <img width="65" height="40" src="./src/main/resources/static/icons/translation/arg-flag.jpg" />
   </a> 
-  <a href="https://github.com/andresWeitzel/Credit_Risk_Analysis_Batch/blob/master/README.md">
+  <a href="./README.md">
     <img width="65" height="40" src="./src/main/resources/static/icons/translation/eeuu-flag.jpg" />
   </a> 
 </div>
