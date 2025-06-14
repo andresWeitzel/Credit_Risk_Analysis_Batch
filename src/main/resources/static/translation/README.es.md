@@ -38,7 +38,7 @@
 
 Esta aplicación Spring Batch está diseñada para analizar y evaluar el riesgo crediticio de clientes utilizando un sistema sofisticado de puntuación multifactorial. El sistema procesa datos de clientes desde un archivo CSV, realiza un análisis de riesgo detallado y genera resultados tanto en una base de datos H2 como en un archivo CSV de salida.
 
-* [Playlist Pruebas Funcionales]() <a href="" target="_blank"> <img src="../icons/social-networks/yt.png" width="25" /></a>
+* [Video Pruebas Funcionales](https://www.youtube.com/watch?v=9IEHzHfXZbo) <a href="https://www.youtube.com/watch?v=9IEHzHfXZbo" target="_blank"> <img src="../icons/social-networks/yt.png" width="25" /></a>
 
 
 ## Secciones
@@ -343,6 +343,18 @@ La aplicación expone varios endpoints de monitoreo:
 - `/actuator/health`: Estado de la aplicación
 - `/actuator/metrics`: Métricas de rendimiento
 - `/actuator/prometheus`: Métricas en formato Prometheus
+</details>
+
+<details>
+<summary>7. Pruebas Funcionales</summary>
+
+#### [Ver](https://www.youtube.com/watch?v=9IEHzHfXZbo)
+
+  <a href="https://www.youtube.com/watch?v=9IEHzHfXZbo">
+    <img src="../img/credit_risk_yt.png" />
+  </a> 
+
+
 </details>
 
 <details>
