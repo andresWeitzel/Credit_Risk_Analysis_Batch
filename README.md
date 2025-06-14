@@ -38,7 +38,7 @@
 
 This Spring Batch application is designed to analyze and evaluate customer credit risk using a sophisticated multifactorial scoring system. The system processes customer data from a CSV file, performs detailed risk analysis, and generates results in both an H2 database and an output CSV file.
 
-* [Functional tests playlist]() <a href="" target="_blank"> <img src="./src/main/resources/static/icons/social-networks/yt.png" width="25" /></a>
+* [Functional tests video](https://www.youtube.com/watch?v=9IEHzHfXZbo) <a href="https://www.youtube.com/watch?v=9IEHzHfXZbo" target="_blank"> <img src="./src/main/resources/static/icons/social-networks/yt.png" width="25" /></a>
 
 
 ## Sections
@@ -341,10 +341,23 @@ The application exposes several monitoring endpoints:
 - `/actuator/prometheus`: Prometheus format metrics
 </details>
 
-<details>
-<summary>7. Contribution and License</summary>
 
-### 7.1 Contribution
+<details>
+<summary>7. Functionality Test</summary>
+
+#### [See](https://www.youtube.com/watch?v=9IEHzHfXZbo)
+
+  <a href="https://www.youtube.com/watch?v=9IEHzHfXZbo">
+    <img src="./src/main/resources/static/img/credit_risk_yt.png" />
+  </a> 
+
+
+</details>
+
+<details>
+<summary>8. Contribution and License</summary>
+
+### 8.1 Contribution
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
@@ -352,6 +365,6 @@ The application exposes several monitoring endpoints:
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-### 7.2 License
+### 8.2 License
 
 This project is under the MIT License. See the `LICENSE` file for more details. 
