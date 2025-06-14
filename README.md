@@ -107,10 +107,6 @@ src/main/java/com/example/creditrisk/
 <details>
 <summary>3. Configuration and Execution</summary>
 
-### 3.1 Configuration
-
-### 3.2 Execution
-
 1. Clone the repository:
 ```bash
 git clone [repository-url]
