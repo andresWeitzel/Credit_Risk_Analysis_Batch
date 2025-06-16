@@ -348,7 +348,7 @@ La aplicación expone varios endpoints de monitoreo:
 <details>
 <summary>7. Pruebas Funcionales</summary>
 
-#### [Ver](https://www.youtube.com/watch?v=9IEHzHfXZbo)
+#### [Ver video](https://www.youtube.com/watch?v=9IEHzHfXZbo)
 
   <a href="https://www.youtube.com/watch?v=9IEHzHfXZbo">
     <img src="../img/credit_risk_yt.png" />
