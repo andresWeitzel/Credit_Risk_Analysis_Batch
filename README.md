@@ -345,7 +345,7 @@ The application exposes several monitoring endpoints:
 <details>
 <summary>7. Functionality Test</summary>
 
-#### [See](https://www.youtube.com/watch?v=9IEHzHfXZbo)
+#### [Watch video](https://www.youtube.com/watch?v=9IEHzHfXZbo)
 
   <a href="https://www.youtube.com/watch?v=9IEHzHfXZbo">
     <img src="./src/main/resources/static/img/credit_risk_yt.png" />
