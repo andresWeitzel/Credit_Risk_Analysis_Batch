@@ -32,7 +32,7 @@
 
 <div align="center">
 
-# Credit Risk Analysis Batch ![Status](../icons/badges/status-completed.svg)
+# Credit Risk Analysis Batch ![(status-completed)](../icons/badges/status-completed.svg)
 
 </div>
 
