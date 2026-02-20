@@ -18,15 +18,13 @@
 
 
 <div align="right"> 
-  <a href="https://github.com/andresWeitzel/Credit_Risk_Analysis_Batch/blob/master/translation/README.es.md">
+  <a href="./README.es.md">
     <img width="65" height="40" src="../icons/translation/arg-flag.jpg" />
   </a> 
-  <a href="https://github.com/andresWeitzel/Credit_Risk_Analysis_Batch/blob/master/README.md">
+  <a href="../../../../../README.md">
     <img width="65" height="40" src="../icons/translation/eeuu-flag.jpg" />
   </a> 
 </div>
-
-<br>
 
 <br>
 
@@ -38,15 +36,73 @@
 
 Esta aplicación Spring Batch está diseñada para analizar y evaluar el riesgo crediticio de clientes utilizando un sistema sofisticado de puntuación multifactorial. El sistema procesa datos de clientes desde un archivo CSV, realiza un análisis de riesgo detallado y genera resultados tanto en una base de datos H2 como en un archivo CSV de salida.
 
-* [Playlist Pruebas Funcionales]() <a href="" target="_blank"> <img src="../icons/social-networks/yt.png" width="25" /></a>
+*   [Video Pruebas Funcionales](https://www.youtube.com/watch?v=9IEHzHfXZbo) <a href="https://www.youtube.com/watch?v=9IEHzHfXZbo" target="_blank"> <img src="../icons/social-networks/yt.png" width="25" /></a>
 
+<br>
 
-## Secciones
+## Índice 📜
 
 <details>
-<summary>1. Características Principales</summary>
+  <summary> Ver detalles </summary>
 
-### 1.1 Análisis de Riesgo Multifactorial
+<div align="right">
+
+`Última actualización: 19/02/26` 
+
+</div>
+
+
+### Sección 1) Descripción, configuración y tecnologías
+
+*   [1.0) Descripción del Proyecto.](#10-descripción-del-proyecto-)
+*   [1.1) Características Principales.](#11-características-principales-)
+*   [1.2) Configuración y Ejecución.](#12-configuración-y-ejecución-)
+*   [1.3) Tecnologías.](#13-tecnologías-)
+
+### Sección 2) Formato de Datos, Casos de Uso y Resultados
+
+*   [2.0) Formato de Datos de Entrada.](#20-formato-de-datos-de-entrada-)
+*   [2.1) Ejemplo de Archivo de Entrada.](#21-ejemplo-de-archivo-de-entrada-)
+*   [2.2) Casos de Uso.](#22-casos-de-uso-)
+*   [2.3) Factores de Análisis.](#23-factores-de-análisis-)
+*   [2.4) Resultados y Monitoreo.](#24-resultados-y-monitoreo-)
+
+### Sección 3) Pruebas Funcionales y Referencias
+
+*   [3.0) Pruebas Funcionales.](#30-pruebas-funcionales-)
+*   [3.1) Contribución y Licencia.](#31-contribución-y-licencia-)
+
+<br>
+
+</details>
+
+<br>
+
+## Sección 1) Descripción, configuración y tecnologías
+
+### 1.0) Descripción del Proyecto [🔝](#índice-)
+
+<details>
+  <summary>Ver detalles</summary>
+
+  <br>
+
+Esta aplicación Spring Batch está diseñada para analizar y evaluar el riesgo crediticio de clientes utilizando un sistema sofisticado de puntuación multifactorial. El sistema procesa datos de clientes desde un archivo CSV, realiza un análisis de riesgo detallado y genera resultados tanto en una base de datos H2 como en un archivo CSV de salida. Utiliza una normalización de puntaje base de crédito, múltiples factores de riesgo (ingresos, ratio deuda-ingreso, historial de pagos), una función sigmoide para el cálculo de probabilidad de incumplimiento, y categorización de riesgo en niveles LOW, MEDIUM, HIGH y VERY_HIGH.
+
+La aplicación también incluye un sistema de recomendaciones que provee límites de crédito sugeridos, tasas de interés recomendadas, términos de crédito y recomendaciones específicas por factor de riesgo. El procesamiento por lotes se maneja a través de chunks configurables con manejo de errores y reintentos. El monitoreo se habilita mediante endpoints de Actuator, integración con Prometheus, logging detallado y métricas de rendimiento.
+
+<br>
+
+</details>
+
+### 1.1) Características Principales [🔝](#índice-)
+
+<details>
+  <summary>Ver detalles</summary>
+
+  <br>
+
+#### Análisis de Riesgo Multifactorial
 - **Puntuación Base de Crédito**: Normalización y ponderación del puntaje de crédito
 - **Factores de Riesgo**:
   - Factor de Ingresos
@@ -55,37 +111,97 @@ Esta aplicación Spring Batch está diseñada para analizar y evaluar el riesgo 
 - **Cálculo de Probabilidad de Incumplimiento**: Utilizando función sigmoide
 - **Categorización de Riesgo**: LOW, MEDIUM, HIGH, VERY_HIGH
 
-### 1.2 Sistema de Recomendaciones
+#### Sistema de Recomendaciones
 - Límites de crédito sugeridos
 - Tasas de interés recomendadas
 - Términos de crédito
 - Recomendaciones específicas por factor de riesgo
 
-### 1.3 Procesamiento por Lotes
+#### Procesamiento por Lotes
 - Lectura de datos desde CSV
 - Procesamiento en chunks configurables
 - Escritura en base de datos y archivo CSV
 - Manejo de errores y reintentos
 
-### 1.4 Monitoreo y Métricas
+#### Monitoreo y Métricas
 - Endpoints de Actuator para monitoreo
 - Integración con Prometheus
 - Logging detallado
 - Métricas de rendimiento
+
+<br>
+
 </details>
 
+### 1.2) Configuración y Ejecución [🔝](#índice-)
+
 <details>
-<summary>2. Requisitos Técnicos y Estructura</summary>
+  <summary>Ver detalles</summary>
 
-### 2.1 Requisitos Técnicos
-- Java 17 o superior
-- Maven 3.6 o superior
-- Spring Boot 3.x
-- Spring Batch 5.x
-- H2 Database
-- Caffeine Cache
+  <br>
 
-### 2.2 Estructura del Proyecto
+*   Creamos un entorno de trabajo a través de algún IDE, podemos o no crear una carpeta raíz para el proyecto, nos posicionamos sobre ella
+
+```git
+cd 'nombreRaízDelProyecto'
+```
+
+*   Una vez creado el entorno de trabajo, clonamos el proyecto
+
+```git
+git clone https://github.com/andresWeitzel/Credit_Risk_Analysis_Batch
+```
+
+*   Nos posicionamos sobre el proyecto
+
+```git
+cd 'Credit_Risk_Analysis_Batch'
+```
+
+*   Instalamos [Java 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) o superior y [Maven 3.6](https://maven.apache.org/download.cgi) o superior si no están instalados.
+
+*   Compilamos el proyecto
+
+```git
+mvn clean install
+```
+
+*   Ejecutamos la aplicación
+
+```git
+mvn spring-boot:run
+```
+
+*   `Importante`: Es posible que existan pasos previos que no hayan sido incluidos por sincronización entre documentación y desarrollo. Por favor, abrir un hilo de conversación en la sección 'Issues' del proyecto.
+
+<br>
+
+</details>
+
+### 1.3) Tecnologías [🔝](#índice-)
+
+<details>
+  <summary>Ver detalles</summary>
+
+  <br>
+
+| **Tecnologías** | **Versión** | **Propósito** |
+| ------------- | ------------- | ------------- |
+| [Java](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) | 17+ | Lenguaje de Programación |
+| [Spring Boot](https://spring.io/projects/spring-boot) | 3.x | Framework de Aplicación |
+| [Spring Batch](https://spring.io/projects/spring-batch) | 5.x | Framework de Procesamiento por Lotes |
+| [H2 Database](https://www.h2database.com/) | 2.x | Base de Datos en Memoria |
+| [Caffeine Cache](https://github.com/ben-manes/caffeine) | 3.x | Caché de Alto Rendimiento |
+| [Maven](https://maven.apache.org/) | 3.6+ | Gestión de Build y Dependencias |
+| [JUnit](https://junit.org/junit5/) | 5.x | Framework de Testing Unitario |
+| [Postman](https://www.postman.com/downloads/) | 10+ | Cliente Http |
+| [Git](https://git-scm.com/downloads) | 2.x | Control de Versiones |
+| Otros | - | Otros |
+
+<br>
+
+#### Estructura del Proyecto
+
 ```
 src/main/java/com/example/creditrisk/
 ├── config/
@@ -102,36 +218,21 @@ src/main/java/com/example/creditrisk/
 │   └── CreditRiskFileWriter.java # Escritor de resultados
 └── CreditRiskBatchApplication.java
 ```
+
+<br>
+
 </details>
 
-<details>
-<summary>3. Configuración y Ejecución</summary>
+<br>
 
-### 3.1 Configuración
+## Sección 2) Formato de Datos, Casos de Uso y Resultados
 
-### 3.2 Ejecución
-
-1. Clonar el repositorio:
-```bash
-git clone [url-del-repositorio]
-cd credit-risk-batch
-```
-
-2. Compilar el proyecto:
-```bash
-mvn clean install
-```
-
-3. Ejecutar la aplicación:
-```bash
-mvn spring-boot:run
-```
-</details>
+### 2.0) Formato de Datos de Entrada [🔝](#índice-)
 
 <details>
-<summary>4. Formato de Datos y Ejemplos</summary>
+  <summary>Ver detalles</summary>
 
-### 4.1 Formato de Datos de Entrada
+  <br>
 
 El archivo de entrada debe estar en formato CSV con las siguientes columnas:
 
@@ -191,7 +292,17 @@ El archivo de entrada debe estar en formato CSV con las siguientes columnas:
 - additionalInfo: Información adicional
 - recommendations: Recomendaciones específicas
 
-### 4.2 Ejemplo de Archivo de Entrada
+<br>
+
+</details>
+
+### 2.1) Ejemplo de Archivo de Entrada [🔝](#índice-)
+
+<details>
+  <summary>Ver detalles</summary>
+
+  <br>
+
 ```csv
 customerId,customerName,creditScore,income,debtToIncomeRatio,paymentHistory,employmentYears,loanAmount,loanPurpose,existingLoans,propertyValue,maritalStatus,educationLevel,industry,riskCategory,status,additionalInfo,recommendations,birthDate,age,employmentType,monthlyExpenses,savingsBalance,creditHistoryYears,numberOfCreditCards,creditCardUtilization,hasBankruptcy,bankruptcyYearsAgo,hasForeclosure,foreclosureYearsAgo,residenceType,yearsAtCurrentAddress,loanTerm,interestRate,collateralType,collateralValue,guarantorStatus,guarantorCreditScore,guarantorIncome,guarantorRelationship
 CUST001,John Smith,720,85000,0.35,95,8,150000,Mortgage,1,350000,Married,Bachelors,Technology,Low,Approved,Stable employment history,Consider refinancing in 2 years,1980-05-15,43,Full-time,3500,50000,15,2,0.25,false,0,false,0,Mortgage,5,Long-term,4.5,Real Estate,350000,None,,,,
@@ -205,12 +316,17 @@ CUST008,Emma Wilson,730,110000,0.28,96,10,250000,Investment,1,600000,Married,Bac
 CUST009,James Taylor,650,72000,0.40,85,6,130000,Medical,2,280000,Married,Bachelors,Healthcare,Medium,Approved,Medical expenses,Health insurance review,1987-06-30,36,Full-time,3000,35000,9,3,0.50,false,0,false,0,Mortgage,4,Medium-term,5.5,Real Estate,280000,None,,,,
 CUST010,Sophia Martinez,670,68000,0.42,87,5,115000,Wedding,1,260000,Engaged,Bachelors,Marketing,Medium,Approved,Upcoming wedding,Budget planning,1992-02-14,31,Full-time,2900,20000,7,2,0.40,false,0,false,0,Rent,2,Short-term,6.0,None,0,Provided,700,75000,Fiance
 ```
+
+<br>
+
 </details>
 
-<details>
-<summary>5. Casos de Uso y Análisis</summary>
+### 2.2) Casos de Uso [🔝](#índice-)
 
-### 5.1 Casos de Uso
+<details>
+  <summary>Ver detalles</summary>
+
+  <br>
 
 #### Cliente de Bajo Riesgo (CUST001)
 ```json
@@ -273,7 +389,16 @@ CUST010,Sophia Martinez,670,68000,0.42,87,5,115000,Wedding,1,260000,Engaged,Bach
 }
 ```
 
-### 5.2 Factores de Análisis
+<br>
+
+</details>
+
+### 2.3) Factores de Análisis [🔝](#índice-)
+
+<details>
+  <summary>Ver detalles</summary>
+
+  <br>
 
 #### Puntuación Base de Crédito
 - Normalización: (creditScore / 850) * 100
@@ -294,12 +419,17 @@ CUST010,Sophia Martinez,670,68000,0.42,87,5,115000,Wedding,1,260000,Engaged,Bach
 - Normalización: paymentHistory / 100
 - Peso: 10% del puntaje final
 - Ejemplo: 95% → 0.95 normalizado
+
+<br>
+
 </details>
 
-<details>
-<summary>6. Resultados y Monitoreo</summary>
+### 2.4) Resultados y Monitoreo [🔝](#índice-)
 
-### 6.1 Resultados
+<details>
+  <summary>Ver detalles</summary>
+
+  <br>
 
 La aplicación genera dos tipos de salida:
 
@@ -336,19 +466,47 @@ La aplicación genera dos tipos de salida:
 - debtRecommendation: Recomendación relacionada con deuda
 - paymentRecommendation: Recomendación relacionada con pagos
 
-### 6.2 Monitoreo
+#### Endpoints de Monitoreo
 
 La aplicación expone varios endpoints de monitoreo:
 
 - `/actuator/health`: Estado de la aplicación
 - `/actuator/metrics`: Métricas de rendimiento
 - `/actuator/prometheus`: Métricas en formato Prometheus
+
+<br>
+
 </details>
 
-<details>
-<summary>7. Contribución y Licencia</summary>
+<br>
 
-### 7.1 Contribución
+## Sección 3) Pruebas Funcionales y Referencias.
+
+### 3.0) Pruebas Funcionales [🔝](#índice-)
+
+<details>
+  <summary>Ver detalles</summary>
+
+<br>
+
+#### [Ver video](https://www.youtube.com/watch?v=9IEHzHfXZbo)
+
+  <a href="https://www.youtube.com/watch?v=9IEHzHfXZbo">
+    <img src="../img/credit_risk_yt.png" />
+  </a> 
+
+<br>
+
+</details>
+
+### 3.1) Contribución y Licencia [🔝](#índice-)
+
+<details>
+  <summary>Ver detalles</summary>
+
+  <br>
+
+#### Contribución
 
 1. Fork el repositorio
 2. Crear una rama para tu feature (`git checkout -b feature/AmazingFeature`)
@@ -356,6 +514,10 @@ La aplicación expone varios endpoints de monitoreo:
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abrir un Pull Request
 
-### 7.2 Licencia
+#### Licencia
 
 Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles. 
+
+<br>
+
+</details>

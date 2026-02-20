@@ -28,8 +28,6 @@
 
 <br>
 
-<br>
-
 <div align="center">
 
 # Credit Risk Analysis Batch ![Status](./src/main/resources/static/icons/badges/status-completed.svg)
@@ -38,15 +36,72 @@
 
 This Spring Batch application is designed to analyze and evaluate customer credit risk using a sophisticated multifactorial scoring system. The system processes customer data from a CSV file, performs detailed risk analysis, and generates results in both an H2 database and an output CSV file.
 
-* [Functional tests video](https://www.youtube.com/watch?v=9IEHzHfXZbo) <a href="https://www.youtube.com/watch?v=9IEHzHfXZbo" target="_blank"> <img src="./src/main/resources/static/icons/social-networks/yt.png" width="25" /></a>
+*   [Functional tests video](https://www.youtube.com/watch?v=9IEHzHfXZbo) <a href="https://www.youtube.com/watch?v=9IEHzHfXZbo" target="_blank"> <img src="./src/main/resources/static/icons/social-networks/yt.png" width="25" /></a>
 
+<br>
 
-## Sections
+## Index 📜
 
 <details>
-<summary>1. Main Features</summary>
+  <summary> View details </summary>
 
-### 1.1 Multifactorial Risk Analysis
+<div align="right">
+
+`Latest update: 19/02/26` 
+
+</div>
+
+### Section 1) Description, configuration and technologies
+
+*   [1.0) Project Description.](#10-project-description-)
+*   [1.1) Main Features.](#11-main-features-)
+*   [1.2) Configuration and Execution.](#12-configuration-and-execution-)
+*   [1.3) Technologies.](#13-technologies-)
+
+### Section 2) Data Format, Use Cases and Results
+
+*   [2.0) Input Data Format.](#20-input-data-format-)
+*   [2.1) Input File Example.](#21-input-file-example-)
+*   [2.2) Use Cases.](#22-use-cases-)
+*   [2.3) Analysis Factors.](#23-analysis-factors-)
+*   [2.4) Results and Monitoring.](#24-results-and-monitoring-)
+
+### Section 3) Functionality Testing and References
+
+*   [3.0) Functionality Test.](#30-functionality-test-)
+*   [3.1) Contribution and License.](#31-contribution-and-license-)
+
+<br>
+
+</details>
+
+<br>
+
+## Section 1) Description, configuration and technologies
+
+### 1.0) Project Description [🔝](#index-)
+
+<details>
+  <summary>View details</summary>
+
+  <br>
+
+This Spring Batch application is designed to analyze and evaluate customer credit risk using a sophisticated multifactorial scoring system. The system processes customer data from a CSV file, performs detailed risk analysis, and generates results in both an H2 database and an output CSV file. It uses a base credit score normalization, multiple risk factors (income, debt-to-income ratio, payment history), a sigmoid function for default probability calculation, and risk categorization into LOW, MEDIUM, HIGH, and VERY_HIGH levels.
+
+The application also includes a recommendation system that provides suggested credit limits, recommended interest rates, credit terms, and specific recommendations by risk factor. Batch processing is handled through configurable chunk processing with error handling and retries. Monitoring is enabled via Actuator endpoints, Prometheus integration, detailed logging, and performance metrics.
+
+<br>
+
+</details>
+
+### 1.1) Main Features [🔝](#index-)
+
+<details>
+  <summary>View details</summary>
+
+  <br>
+
+#### Multifactorial Risk Analysis
 - **Base Credit Score**: Credit score normalization and weighting
 - **Risk Factors**:
   - Income Factor
@@ -55,37 +110,97 @@ This Spring Batch application is designed to analyze and evaluate customer credi
 - **Default Probability Calculation**: Using sigmoid function
 - **Risk Categorization**: LOW, MEDIUM, HIGH, VERY_HIGH
 
-### 1.2 Recommendation System
+#### Recommendation System
 - Suggested credit limits
 - Recommended interest rates
 - Credit terms
 - Specific recommendations by risk factor
 
-### 1.3 Batch Processing
+#### Batch Processing
 - CSV data reading
 - Configurable chunk processing
 - Database and CSV file writing
 - Error handling and retries
 
-### 1.4 Monitoring and Metrics
+#### Monitoring and Metrics
 - Actuator endpoints for monitoring
 - Prometheus integration
 - Detailed logging
 - Performance metrics
+
+<br>
+
 </details>
 
+### 1.2) Configuration and Execution [🔝](#index-)
+
 <details>
-<summary>2. Technical Requirements and Structure</summary>
+  <summary>View details</summary>
 
-### 2.1 Technical Requirements
-- Java 17 or higher
-- Maven 3.6 or higher
-- Spring Boot 3.x
-- Spring Batch 5.x
-- H2 Database
-- Caffeine Cache
+  <br>
 
-### 2.2 Project Structure
+*   We create a work environment through some IDE, we may or may not create a root folder for the project, we position ourselves on it
+
+```git
+cd 'projectRootName'
+```
+
+*   Once a work environment has been created, we clone the project
+
+```git
+git clone https://github.com/andresWeitzel/Credit_Risk_Analysis_Batch
+```
+
+*   We position ourselves on the project
+
+```git
+cd 'Credit_Risk_Analysis_Batch'
+```
+
+*   We install [Java 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) or higher and [Maven 3.6](https://maven.apache.org/download.cgi) or higher if not already installed.
+
+*   We build the project
+
+```git
+mvn clean install
+```
+
+*   We run the application
+
+```git
+mvn spring-boot:run
+```
+
+*   `Important`: It is possible that there are other previous steps that have not been included due to synchronization between docs in relation to development. Please open a conversation thread within the 'Issues' section of the project.
+
+<br>
+
+</details>
+
+### 1.3) Technologies [🔝](#index-)
+
+<details>
+  <summary>View details</summary>
+
+  <br>
+
+| **Technologies** | **Version** | **Purpose** |
+| ------------- | ------------- | ------------- |
+| [Java](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) | 17+ | Programming Language |
+| [Spring Boot](https://spring.io/projects/spring-boot) | 3.x | Application Framework |
+| [Spring Batch](https://spring.io/projects/spring-batch) | 5.x | Batch Processing Framework |
+| [H2 Database](https://www.h2database.com/) | 2.x | In-memory Database |
+| [Caffeine Cache](https://github.com/ben-manes/caffeine) | 3.x | High Performance Caching |
+| [Maven](https://maven.apache.org/) | 3.6+ | Build and Dependency Management |
+| [JUnit](https://junit.org/junit5/) | 5.x | Unit Testing Framework |
+| [Postman](https://www.postman.com/downloads/) | 10+ | Http Client |
+| [Git](https://git-scm.com/downloads) | 2.x | Version Control |
+| Others | - | Others |
+
+<br>
+
+#### Project Structure
+
 ```
 src/main/java/com/example/creditrisk/
 ├── config/
@@ -102,32 +217,21 @@ src/main/java/com/example/creditrisk/
 │   └── CreditRiskFileWriter.java # Results writer
 └── CreditRiskBatchApplication.java
 ```
+
+<br>
+
 </details>
 
-<details>
-<summary>3. Configuration and Execution</summary>
+<br>
 
-1. Clone the repository:
-```bash
-git clone [repository-url]
-cd credit-risk-batch
-```
+## Section 2) Data Format, Use Cases and Results
 
-2. Build the project:
-```bash
-mvn clean install
-```
-
-3. Run the application:
-```bash
-mvn spring-boot:run
-```
-</details>
+### 2.0) Input Data Format [🔝](#index-)
 
 <details>
-<summary>4. Data Format and Examples</summary>
+  <summary>View details</summary>
 
-### 4.1 Input Data Format
+  <br>
 
 The input file must be in CSV format with the following columns:
 
@@ -187,7 +291,17 @@ The input file must be in CSV format with the following columns:
 - additionalInfo: Additional information
 - recommendations: Specific recommendations
 
-### 4.2 Input File Example
+<br>
+
+</details>
+
+### 2.1) Input File Example [🔝](#index-)
+
+<details>
+  <summary>View details</summary>
+
+  <br>
+
 ```csv
 customerId,customerName,creditScore,income,debtToIncomeRatio,paymentHistory,employmentYears,loanAmount,loanPurpose,existingLoans,propertyValue,maritalStatus,educationLevel,industry,riskCategory,status,additionalInfo,recommendations,birthDate,age,employmentType,monthlyExpenses,savingsBalance,creditHistoryYears,numberOfCreditCards,creditCardUtilization,hasBankruptcy,bankruptcyYearsAgo,hasForeclosure,foreclosureYearsAgo,residenceType,yearsAtCurrentAddress,loanTerm,interestRate,collateralType,collateralValue,guarantorStatus,guarantorCreditScore,guarantorIncome,guarantorRelationship
 CUST001,John Smith,720,85000,0.35,95,8,150000,Mortgage,1,350000,Married,Bachelors,Technology,Low,Approved,Stable employment history,Consider refinancing in 2 years,1980-05-15,43,Full-time,3500,50000,15,2,0.25,false,0,false,0,Mortgage,5,Long-term,4.5,Real Estate,350000,None,,,,
@@ -201,12 +315,17 @@ CUST008,Emma Wilson,730,110000,0.28,96,10,250000,Investment,1,600000,Married,Bac
 CUST009,James Taylor,650,72000,0.40,85,6,130000,Medical,2,280000,Married,Bachelors,Healthcare,Medium,Approved,Medical expenses,Health insurance review,1987-06-30,36,Full-time,3000,35000,9,3,0.50,false,0,false,0,Mortgage,4,Medium-term,5.5,Real Estate,280000,None,,,,
 CUST010,Sophia Martinez,670,68000,0.42,87,5,115000,Wedding,1,260000,Engaged,Bachelors,Marketing,Medium,Approved,Upcoming wedding,Budget planning,1992-02-14,31,Full-time,2900,20000,7,2,0.40,false,0,false,0,Rent,2,Short-term,6.0,None,0,Provided,700,75000,Fiance
 ```
+
+<br>
+
 </details>
 
-<details>
-<summary>5. Use Cases and Analysis</summary>
+### 2.2) Use Cases [🔝](#index-)
 
-### 5.1 Use Cases
+<details>
+  <summary>View details</summary>
+
+  <br>
 
 #### Low Risk Customer (CUST001)
 ```json
@@ -269,7 +388,16 @@ CUST010,Sophia Martinez,670,68000,0.42,87,5,115000,Wedding,1,260000,Engaged,Bach
 }
 ```
 
-### 5.2 Analysis Factors
+<br>
+
+</details>
+
+### 2.3) Analysis Factors [🔝](#index-)
+
+<details>
+  <summary>View details</summary>
+
+  <br>
 
 #### Base Credit Score
 - Normalization: (creditScore / 850) * 100
@@ -290,12 +418,17 @@ CUST010,Sophia Martinez,670,68000,0.42,87,5,115000,Wedding,1,260000,Engaged,Bach
 - Normalization: paymentHistory / 100
 - Weight: 10% of final score
 - Example: 95% → 0.95 normalized
+
+<br>
+
 </details>
 
-<details>
-<summary>6. Results and Monitoring</summary>
+### 2.4) Results and Monitoring [🔝](#index-)
 
-### 6.1 Results
+<details>
+  <summary>View details</summary>
+
+  <br>
 
 The application generates two types of output:
 
@@ -332,18 +465,28 @@ The application generates two types of output:
 - debtRecommendation: Debt-related recommendation
 - paymentRecommendation: Payment-related recommendation
 
-### 6.2 Monitoring
+#### Monitoring Endpoints
 
 The application exposes several monitoring endpoints:
 
 - `/actuator/health`: Application status
 - `/actuator/metrics`: Performance metrics
 - `/actuator/prometheus`: Prometheus format metrics
+
+<br>
+
 </details>
 
+<br>
+
+## Section 3) Functionality Testing and References.
+
+### 3.0) Functionality Test [🔝](#index-)
 
 <details>
-<summary>7. Functionality Test</summary>
+  <summary>View details</summary>
+
+<br>
 
 #### [Watch video](https://www.youtube.com/watch?v=9IEHzHfXZbo)
 
@@ -351,13 +494,18 @@ The application exposes several monitoring endpoints:
     <img src="./src/main/resources/static/img/credit_risk_yt.png" />
   </a> 
 
+<br>
 
 </details>
 
-<details>
-<summary>8. Contribution and License</summary>
+### 3.1) Contribution and License [🔝](#index-)
 
-### 8.1 Contribution
+<details>
+  <summary>View details</summary>
+
+  <br>
+
+#### Contribution
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
@@ -365,6 +513,10 @@ The application exposes several monitoring endpoints:
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-### 8.2 License
+#### License
 
 This project is under the MIT License. See the `LICENSE` file for more details. 
+
+<br>
+
+</details>
